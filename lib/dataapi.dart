@@ -18,18 +18,6 @@ class ApiFetch with ChangeNotifier {
 
   final GetApi api = GetApi();
 
-  // Future<String?> get() async {
-  //   try {
-  //     PexelsPhoto? photo = await client.getPhoto();
-  //     if (photo != null) {
-  //       String? str = photo.get(ImageFormats.original);
-  //       return str;
-  //     }
-  //   } catch (e) {
-  //     return "";
-  //   }
-  // }
-
   getPexelList(String query) async {
     if (query != _query) {
       _query = query;
