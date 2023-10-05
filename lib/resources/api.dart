@@ -17,7 +17,6 @@ class GetApi {
       }
       return list;
     } catch (e) {
-      print(e);
       return [];
     }
   }

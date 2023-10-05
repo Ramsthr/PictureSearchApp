@@ -21,7 +21,7 @@ class ImageContainer extends StatelessWidget {
           ),
         );
       },
-      child: Container(
+      child: SizedBox(
         width: width * 0.07,
         height: height * 0.07,
         child: Image.network(image.get(ImageFormats.small)!),

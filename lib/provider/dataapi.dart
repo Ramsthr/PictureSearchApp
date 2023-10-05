@@ -1,7 +1,6 @@
-import 'package:animalsearchapp/provider/api.dart';
+import 'package:animalsearchapp/resources/api.dart';
 import 'package:flutter/material.dart';
 import 'package:pexels_api/pexels_api.dart';
-import 'package:pexels_api/src/pexels_search_result.dart';
 
 class ApiFetch with ChangeNotifier {
   List<PexelsPhoto>? _list = [];

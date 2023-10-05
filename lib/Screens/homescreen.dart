@@ -1,6 +1,5 @@
-import 'package:animalsearchapp/dataapi.dart';
-import 'package:animalsearchapp/imagecontainer.dart';
-import 'package:animalsearchapp/provider/api.dart';
+import 'package:animalsearchapp/provider/dataapi.dart';
+import 'package:animalsearchapp/Widgets/imagecontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:pexels_api/pexels_api.dart';
 import 'package:provider/provider.dart';
@@ -18,13 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int page = 1;
   // List<PexelsPhoto> ls = context.read<GetApi>().list;
   String query = "";
-  ScrollController _controller = ScrollController();
-  TextEditingController _searchController = TextEditingController();
-
-  _getPhoto(PexelsPhoto photo) {
-    String sc = photo.get(ImageFormats.small)!;
-    return sc;
-  }
+  final ScrollController _controller = ScrollController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -33,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _scrollControl() {
+    scrollControl() {
       if (_controller.offset >= _controller.position.maxScrollExtent &&
           !_controller.position.outOfRange) {
         ApiFetch.setbool(true);
@@ -45,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
 
-    _controller.addListener(_scrollControl);
+    _controller.addListener(scrollControl);
     List<PexelsPhoto>? list = Provider.of<ApiFetch>(context).list;
 
     return Scaffold(
