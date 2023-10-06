@@ -18,6 +18,24 @@ class ApiFetch with ChangeNotifier {
       _page = 1;
       _list = await api.getquery(_query, _page, context);
       _page++;
+      if (_list == []) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          duration: Duration(seconds: 10),
+          content: SizedBox(
+            height: 50,
+            child: Center(
+              child: Text(
+                "Data is not avialable",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red),
+              ),
+            ),
+          ),
+        ));
+      }
       notifyListeners();
     }
   }

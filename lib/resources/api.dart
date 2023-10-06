@@ -11,9 +11,11 @@ class GetApi {
     try {
       SearchResult<PexelsPhoto?>? result = await _client.searchPhotos(query,
           collection: PexelsCollection.Regular, page: page, resultsPerPage: 15);
+
       List<PexelsPhoto> list = [];
       if (result != null) {
-        for (int i = 0; i < 15; i++) {
+        int length = result.items.length;
+        for (int i = 0; i < length; i++) {
           list.add(result[i]!);
         }
       }
