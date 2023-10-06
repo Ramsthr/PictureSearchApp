@@ -13,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ApiFetch api = ApiFetch();
-  bool isLoading = false;
+  bool isLoading = true;
   int page = 1;
   // List<PexelsPhoto> ls = context.read<GetApi>().list;
   String query = "";
@@ -27,12 +27,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    scrollControl() {
+    scrollControl() async {
       if (_controller.offset >= _controller.position.maxScrollExtent &&
-          !_controller.position.outOfRange) {
-        ApiFetch.setbool(true);
-        Provider.of<ApiFetch>(context, listen: false)
-            .getPexelList(_searchController.text);
+          !_controller.position.outOfRange &&
+          isLoading) {
+        isLoading = false;
+        await Provider.of<ApiFetch>(context, listen: false)
+            .getPexellistbyScoll(context);
+        isLoading = true;
       }
     }
 
@@ -58,9 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: OutlineInputBorder(),
               ),
               onSubmitted: (value) {
-                ApiFetch.setbool(false);
                 Provider.of<ApiFetch>(context, listen: false)
-                    .getPexelList(value);
+                    .getPexelList(value, context);
               },
             ),
           ),
@@ -77,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 20,
-                        mainAxisSpacing: 15,
+                        mainAxisSpacing: 20,
                       ),
                       controller: _controller,
                       itemBuilder: (context, index) {
