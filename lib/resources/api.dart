@@ -1,10 +1,10 @@
+import 'package:animalsearchapp/resources/key.dart';
 import 'package:flutter/material.dart';
 import 'package:pexels_api/pexels_api.dart';
 import 'package:pexels_api/src/pexels_search_result.dart';
 
 class GetApi {
-  final PexelsClient _client =
-      PexelsClient('zI0i1nmABFRPRGCvXIQ8q0JN3bBVraVD5xeuZ8pSRwYetOdNIF3JGmVV');
+  final PexelsClient _client = PexelsClient(ApiKey);
 
   Future<List<PexelsPhoto>?> getquery(
       String query, int page, BuildContext context) async {
