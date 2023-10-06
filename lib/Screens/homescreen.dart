@@ -13,9 +13,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ApiFetch api = ApiFetch();
-  bool isLoading = true;
+  bool isScroll = true;
   int page = 1;
-  // List<PexelsPhoto> ls = context.read<GetApi>().list;
+  bool isloading = false;
   String query = "";
   final ScrollController _controller = ScrollController();
   final TextEditingController _searchController = TextEditingController();
@@ -30,16 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
     scrollControl() async {
       if (_controller.offset >= _controller.position.maxScrollExtent &&
           !_controller.position.outOfRange &&
-          isLoading) {
-        isLoading = false;
+          isScroll) {
+        isScroll = false;
         await Provider.of<ApiFetch>(context, listen: false)
             .getPexellistbyScoll(context);
-        isLoading = true;
+        isScroll = true;
       }
     }
-
-    // double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
 
     _controller.addListener(scrollControl);
     List<PexelsPhoto>? list = Provider.of<ApiFetch>(context).list;
@@ -59,21 +56,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 hintText: "Search...",
                 border: OutlineInputBorder(),
               ),
-              onSubmitted: (value) {
-                Provider.of<ApiFetch>(context, listen: false)
+              onSubmitted: (value) async {
+                setState(() {
+                  isloading = true;
+                });
+
+                await Provider.of<ApiFetch>(context, listen: false)
                     .getPexelList(value, context);
+                setState(() {
+                  isloading = false;
+                });
               },
             ),
           ),
           Expanded(
             child: Container(
               //  height: height * 0.9,
-              child: (list == null)
+              child: (isloading)
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : GridView.builder(
-                      itemCount: list.length,
+                      itemCount: list!.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
