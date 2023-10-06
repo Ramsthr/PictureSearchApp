@@ -1,16 +1,27 @@
 # animalsearchapp
 
-A new Flutter project.
+Online Image from pexels.
 
-## Getting Started
+## Working of App
 
-This project is a starting point for a Flutter application.
+This project is a picture search app.
 
-A few resources to get you started if this is your first Flutter project:
+Picture Search App functionalities are:-
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1)The objective of this Project is to design and develop a mobile application that allows users to
+search for pictures.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2)The app includes a search bar at the top where users can input their query.
+
+3)Below, it display the search results in a grid format. Each row in the grid should contain three
+pictures related to the search query, and there will be 5 rows.
+
+4)On scrolling, more images comes.
+
+5)The images is loaded in a paginated manner to improve performance (this means
+that the images is only be loaded when the user is scrolling only).
+
+- [Source Site of Pexels](https://www.pexels.com/)
+- [Pexels API site](https://www.pexels.com/api/)
+
+
