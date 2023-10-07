@@ -1,4 +1,4 @@
-# animalsearchapp
+# Picturesearchapp
 
 Online Image from pexels.
 
