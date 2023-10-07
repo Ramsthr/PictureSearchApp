@@ -30,10 +30,14 @@ The Picture Search App's functionalities are as follows:
 
 # Getting Started
 - Clone the project
-- Add Api keys into [api.dart](./lib/resources) at ApiKey.
+- Add Api keys into file [api.dart](./lib/resources) at `ApiKey`.
 - Before runnning the application, run the following command:
-  ```flutter pub get```
-- You can then run the project with the following command:
- ``flutter run``
+  ```
+  flutter pub get
+  ```
+- Then run the project with the following command:
+  ```
+  flutter run
+  ```
  
 
